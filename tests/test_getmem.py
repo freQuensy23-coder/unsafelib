@@ -85,3 +85,39 @@ class TestGetmemExploit:
             # First 8 bytes are ob_refcnt — should be small positive
             refcnt = u64(mem[addr:addr + 8])
             assert 1 <= refcnt < 1000
+
+    def test_mutate_cached_integer(self):
+        """Overwrite CPython's cached integer 42 → 43 via raw memory."""
+        import subprocess
+        # Run in subprocess to avoid corrupting our own process
+        result = subprocess.run(
+            [sys.executable, "-c", """
+from unsafelib import Unsafe
+from unsafelib.core import u64
+
+with Unsafe() as u:
+    mem = u.getmem()
+    addr = u.addrof(42)
+
+    # Save original ob_digit
+    original = list(mem[addr + 24 : addr + 28])
+
+    # Overwrite ob_digit: 42 -> 43
+    mem[addr + 24 : addr + 28] = [43, 0, 0, 0]
+
+    results = []
+    results.append(str(42))        # literal -> cached object
+    results.append(str(40 + 2))    # computed -> same cached object
+    results.append(str(41 + 1))    # computed -> same cached object
+
+    # Restore before exit
+    mem[addr + 24 : addr + 28] = original
+
+    print(",".join(results))
+"""],
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        assert result.returncode == 0, f"stderr: {result.stderr}"
+        assert result.stdout.strip() == "43,43,43"

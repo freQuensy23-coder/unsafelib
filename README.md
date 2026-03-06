@@ -36,6 +36,23 @@ with Unsafe() as u:
 u.getmem()  # UnsafeContextError: Cannot call 'getmem' outside of an unsafe context.
 ```
 
+### Mutate a cached integer
+
+CPython caches integers -5 to 256 as singletons. You can overwrite them in memory:
+
+```python
+from unsafelib import Unsafe
+
+with Unsafe() as u:
+    mem = u.getmem()
+    addr = u.addrof(42)
+    mem[addr + 24 : addr + 28] = [43, 0, 0, 0]  # overwrite ob_digit
+
+    print(42)       # → 43  (literal 42 points to the cached object)
+    print(40 + 2)   # → 43  (result is in [-5, 256], so same cached object)
+    print(41 + 1)   # → 43  (same)
+```
+
 ## License
 
 MIT
