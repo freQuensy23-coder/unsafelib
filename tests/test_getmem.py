@@ -4,11 +4,11 @@ import sys
 import platform
 import pytest
 from unittest.mock import patch, MagicMock
-from unsafe_python.core import (
+from unsafelib.core import (
     make_getmem, addrof, p64a, u64, refbytes,
     INT64_MAX, BYTES_HEADER_LEN,
 )
-from unsafe_python import Unsafe, UnsafeContextError
+from unsafelib import Unsafe, UnsafeContextError
 
 EXPLOIT_WORKS = (
     platform.python_implementation() == "CPython"

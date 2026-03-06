@@ -2,7 +2,7 @@
 
 import sys
 import pytest
-from unsafe_python.core import (
+from unsafelib.core import (
     _get_aligned_tuple_and_bytes,
     _load_n,
     _replace_code_consts,

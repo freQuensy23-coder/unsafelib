@@ -4,11 +4,11 @@ import sys
 import platform
 import pytest
 from unittest.mock import patch, mock_open, MagicMock
-from unsafe_python.core import (
+from unsafelib.core import (
     find_gadgets, do_rop, GADGET_PATTERNS, addrof, p64a, u64,
 )
-from unsafe_python.exceptions import GadgetSearchError
-from unsafe_python import Unsafe, UnsafeContextError
+from unsafelib.exceptions import GadgetSearchError
+from unsafelib import Unsafe, UnsafeContextError
 
 
 class TestGadgetPatterns:

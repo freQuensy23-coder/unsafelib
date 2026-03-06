@@ -1,7 +1,7 @@
 """Tests for the Unsafe context manager gating logic."""
 
 import pytest
-from unsafe_python import Unsafe, UnsafeContextError
+from unsafelib import Unsafe, UnsafeContextError
 
 
 def test_addrof_outside_context_raises():

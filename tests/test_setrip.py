@@ -4,11 +4,11 @@ import sys
 import platform
 import pytest
 from unittest.mock import patch, MagicMock, call
-from unsafe_python.core import (
+from unsafelib.core import (
     setrip, addrof, sizeof, p64a, u64,
     FunctionType, nullfunc, BYTES_HEADER_LEN,
 )
-from unsafe_python import Unsafe, UnsafeContextError
+from unsafelib import Unsafe, UnsafeContextError
 
 
 class TestSetripContextGating:
@@ -98,7 +98,7 @@ class TestSetripSubprocess:
         import subprocess
         result = subprocess.run(
             [sys.executable, "-c", """
-from unsafe_python import Unsafe
+from unsafelib import Unsafe
 with Unsafe() as u:
     u.setrip(0xDEADBEEF)
 """],

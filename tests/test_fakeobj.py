@@ -4,11 +4,11 @@ import sys
 import platform
 import pytest
 from unittest.mock import patch, MagicMock
-from unsafe_python.core import (
+from unsafelib.core import (
     fakeobj_once, FakeobjPrimitive, addrof, p64a, refbytes,
     BYTES_HEADER_LEN, TUPLE_HEADER_LEN,
 )
-from unsafe_python import Unsafe, UnsafeContextError
+from unsafelib import Unsafe, UnsafeContextError
 
 # The actual exploit only works on CPython <= 3.11
 EXPLOIT_WORKS = (

@@ -1,8 +1,8 @@
 """
-unsafe-python: Memory-unsafe operations in pure CPython, gated behind context managers.
+unsafelib: Memory-unsafe operations in pure CPython, gated behind context managers.
 
 Usage:
-    from unsafe_python import Unsafe
+    from unsafelib import Unsafe
 
     with Unsafe() as u:
         mem = u.getmem()

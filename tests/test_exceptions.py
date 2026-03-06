@@ -1,7 +1,7 @@
 """Tests for custom exceptions."""
 
 import pytest
-from unsafe_python.exceptions import (
+from unsafelib.exceptions import (
     UnsafeError,
     UnsafeContextError,
     HeapGroomError,

@@ -2,7 +2,7 @@
 
 import sys
 import pytest
-from unsafe_python.core import (
+from unsafelib.core import (
     p64a, u64, addrof, refbytes, sizeof,
     BYTES_HEADER_LEN, TUPLE_HEADER_LEN, INT64_MAX, INT32_MAX, INT32_MIN,
     CodeType, FunctionType, nullfunc,

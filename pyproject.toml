@@ -29,7 +29,7 @@ Repository = "https://github.com/freQuensy23-coder/unsafelib"
 Issues = "https://github.com/freQuensy23-coder/unsafelib/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/unsafe_python"]
+packages = ["src/unsafelib"]
 
 [dependency-groups]
 dev = ["pytest>=7"]

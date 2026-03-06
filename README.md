@@ -13,7 +13,7 @@ pip install -U unsafelib
 ## Usage
 
 ```python
-from unsafe_python import Unsafe
+from unsafelib import Unsafe
 
 # All unsafe ops require a context block
 with Unsafe() as u:
